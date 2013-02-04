@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="it" manifest="manifest.appcache">
+	<head>
+		<meta character="utf-8">
+		<title>Agenda</title>
+
+		<!-- bootstrap -->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+		<!-- custom -->
+		<link href="css/application.css" rel="stylesheet" media="screen">
+
+	</head>
+	<body>
+
+		<!-- basic layout -->
+		<div class="container" ng-controller="CalendarCtrl">
+
+			<div class="row">
+				<!-- titolo -->
+				<div class="span6">
+					<h1>Agenda</h1>
+				</div>
+
+  			<!-- status -->
+  			<div class="span6">
+					<p id="offline" class="stato" style="display:none;">
+						<strong>stato:</strong> offline
+					</p>
+					<p id="online" class="stato" style="display:none;">
+						<strong>stato:</strong> online<br/>
+						<span id="azione" class="muted"></span>
+					</p>
+  			</div>
+			</div>
+
+			<div class="row">
+
+				<!-- calendario -->
+				<div class="span4 offset8 calendario">
+					<form class="form-inline">
+						<select class="span3"
+								ng-change="ricaricaeventi()"
+								ng-model="calendario"
+								ng-options="cal.summary for cal in calendari">
+								<option value="">seleziona un calendario</option>
+						</select>
+					</form>
+				</div>
+
+			</div>
+
+			<div class="row" ng-show="calendario">
+				
+				<!-- nuovo evento -->
+				<div class="span4">
+					<form ng-submit="salvaevento()">
+					  <fieldset>
+					    <legend>Nuovo evento</legend>
+					    <label>Titolo</label>
+					    <input type="text"
+					    	ng-model="titoloevento"
+					    	placeholder="Titolo dell'evento">
+					    <label>Data</label>
+					    <input type="text" 
+					    	ng-model="dataevento"
+					    	placeholder="yyyy-mm-dd">
+					    <label>Descrizione</label>
+					    <textarea
+					    	ng-model="descrizioneevento"
+					    ></textarea><br/>
+					    <button type="submit" class="btn">Submit</button>
+					  </fieldset>
+					</form>
+				</div>
+
+  			<!-- lista eventi -->
+  			<div class="span8">
+					<table class="table">
+						<thead>
+							<tr>
+  							<th>Inizio</th>
+  							<th>Descrizione</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="evento in eventi" ng-class="evento.classe">
+								<td class="data">{{ (evento.start.dateTime || evento.start.date).substr(0,10) }}</td>
+								<td class="descrizione">
+									<strong>{{evento.summary}}</strong>
+									<span class="muted">{{evento.location}}</span>
+									<p>{{evento.description}}</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+  			</div>
+
+			</div>
+		</div>
+
+		<!-- modal per la login al servizio -->
+		<div class="modal hide fade" id="login">
+		  <div class="modal-header">
+		    <h3>Effettua il login</h3>
+		  </div>
+		  <div class="modal-body">
+		    <p>Per poter accedere al servizio devi completare l'autenticazione verso Google</p>
+		  </div>
+		  <div class="modal-footer">
+		    <a href="#" class="btn btn-primary" id="btn-login">Effettua il login</a>
+		  </div>
+		</div>
+
+   	<!-- script -->
+   	<script src="vendor/require.js"></script>
+   	<script src="js/application.js"></script>
+   	<script src="js/online.js"></script>
+	</body>
+</html>

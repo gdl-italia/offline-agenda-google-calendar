@@ -1,0 +1,25 @@
+CACHE MANIFEST
+# version: 18
+
+js/application.js
+js/calendar.js
+js/gapi.js
+js/gcal.js
+css/application.css
+vendor/jquery-1.8.3.min.js
+vendor/bootstrap/css/bootstrap.min.css
+vendor/bootstrap/img/glyphicons-halflings-white.png
+vendor/bootstrap/img/glyphicons-halflings.png
+vendor/bootstrap/js/bootstrap.min.js
+vendor/require.js
+vendor/requirejs-plugins-master/src/async.js
+vendor/requirejs-plugins-master/src/propertyParser.js
+vendor/domReady.js
+vendor/underscore-min.js
+vendor/angular.min.js
+
+FALLBACK:
+js/online.js js/offline.js
+
+NETWORK:
+*

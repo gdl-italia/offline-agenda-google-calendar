@@ -1,0 +1,11 @@
+.data{
+	white-space: nowrap;
+}
+
+.descrizione p{
+	word-break: break-all;
+}
+
+.stato, .calendario{
+	text-align: right;
+}
